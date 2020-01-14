@@ -12,7 +12,8 @@ import Submit from './submit/Submit.jsx';
 import {
     exchangeFromTo,
     showCitySelector,
-    hideCitySelector
+    hideCitySelector,
+    fetchCityData
 } from './store/actions';
 function App(props) {
 
@@ -40,7 +41,9 @@ function App(props) {
     const doHideCitySelector = useCallback(() => {
         dispatch(hideCitySelector());
     }, [])
-
+    const doFetchCityData = useCallback(() => {
+        dispatch(fetchCityData());
+    }, [])
     return (
         <div>
             <div className="header-wrapper">
@@ -62,6 +65,7 @@ function App(props) {
                 cityData={cityData}
                 isLoading={isLoadingCityData}
                 onBack = {doHideCitySelector}
+                getCityData={doFetchCityData}
             ></CitySelector>
         </div>
     )
