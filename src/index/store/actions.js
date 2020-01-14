@@ -74,6 +74,7 @@ export function setSelectCity(city) {
         } else {
             dispatch(setTo(city))
         }
+        dispatch(hideCitySelector());
     }
 }
 
@@ -112,7 +113,7 @@ export function fetchCityData() {
             dispatch(setCityData(cache.data));
             return;
         }
-        
+
         dispatch(setIsLoadingCityData(true));
         fetch('/rest/cities?_' + Date.now())
             .then(res => res.json())

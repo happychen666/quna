@@ -13,7 +13,8 @@ import {
     exchangeFromTo,
     showCitySelector,
     hideCitySelector,
-    fetchCityData
+    fetchCityData,
+    setSelectCity
 } from './store/actions';
 function App(props) {
 
@@ -44,6 +45,9 @@ function App(props) {
     const doFetchCityData = useCallback(() => {
         dispatch(fetchCityData());
     }, [])
+    const doSetSelectCity = useCallback((m) => {
+        dispatch(setSelectCity(m));
+    }, [])
     return (
         <div>
             <div className="header-wrapper">
@@ -66,6 +70,7 @@ function App(props) {
                 isLoading={isLoadingCityData}
                 onBack = {doHideCitySelector}
                 getCityData={doFetchCityData}
+                onSelect = {doSetSelectCity}
             ></CitySelector>
         </div>
     )
