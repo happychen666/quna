@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './App.css';
 
 import Header from '../common/header/Header.jsx';
+import CitySelector from '../common/citySelector/CitySelector.jsx';
 import DepartDate from './departdate/DepartDate';
 import HighSpeed from './highSpeed/HighSpeed';
 import Journey from './journey/Journey';
@@ -10,13 +11,17 @@ import Submit from './submit/Submit.jsx';
 
 import {
     exchangeFromTo,
-    showCitySelector
+    showCitySelector,
+    hideCitySelector
 } from './store/actions';
 function App(props) {
 
     const {
         from,
         to,
+        isCitySelectorVisible,
+        cityData,
+        isLoadingCityData,
         dispatch
     } = props;
 
@@ -31,6 +36,9 @@ function App(props) {
 
     const doShowCitySelector = useCallback((m) => {
         dispatch(showCitySelector(m));
+    }, [])
+    const doHideCitySelector = useCallback(() => {
+        dispatch(hideCitySelector());
     }, [])
 
     return (
@@ -49,6 +57,12 @@ function App(props) {
                 <HighSpeed />
                 <Submit />
             </form>
+            <CitySelector
+                show={isCitySelectorVisible}
+                cityData={cityData}
+                isLoading={isLoadingCityData}
+                onBack = {doHideCitySelector}
+            ></CitySelector>
         </div>
     )
 }
