@@ -5,5 +5,8 @@
 ## 用法
 
 ```sh
-npm start
+npm run start
 ```
+```sh
+npm run build
+```构建项目
